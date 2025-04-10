@@ -1,0 +1,25 @@
+# Ignore entire Python virtual environment
+yolo_env/
+
+# Ignore system and temp files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.tmp
+
+# Ignore VS Code settings
+.vscode/
+.history/
+*.code-workspace
+
+# Ignore node/python/docker/aws history/config
+.bash_history
+.node_repl_history
+.viminfo
+.gitconfig
+.aws/
+*.json
+*.lock
+*.cache/
