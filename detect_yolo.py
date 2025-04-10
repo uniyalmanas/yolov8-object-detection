@@ -1,15 +1,15 @@
 import cv2
 from ultralytics import YOLO
 
-# Load the YOLOv8 model (you can try yolov8n.pt, yolov8s.pt, etc.)
-model = YOLO('yolov8n.pt')
+# Load the larger YOLOv8 model for better accuracy
+model = YOLO('yolov8s.pt')  # Try yolov8s.pt or larger models like yolov8m.pt
 
 # Function to detect objects
 def detect_objects(image_path):
     img = cv2.imread(image_path)
 
-    # Run object detection
-    results = model(img)
+    # Run object detection with a lower confidence threshold
+    results = model(img, conf=0.4)  # You can adjust the confidence value (e.g., 0.4)
 
     # Annotate and show result
     for result in results:
@@ -36,7 +36,7 @@ def detect_from_webcam():
         if not ret:
             break
 
-        results = model(frame)
+        results = model(frame, conf=0.4)  # Adjust the confidence threshold here as well
         annotated_frame = results[0].plot()
         cv2.imshow("Webcam Detection", annotated_frame)
 
@@ -46,4 +46,5 @@ def detect_from_webcam():
     cap.release()
     cv2.destroyAllWindows()
 
-# detect_from_webcam()
+# Call webcam detection function
+detect_from_webcam()
